@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Main fact table containing order information and revenue."
+    columns:
+      - name: order_id
+        description: "Primary key for each order."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Foreign Key linking to the customer dimension"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+
+      - name: order_status
+        description: "Shipping status of the order (1 = Pending, 2 = Processing,3 = Rejected,4 = Completed)."
+        tests:
+          - accepted_values:
+              arguments: 
+                values: [1, 2, 3, 4]
+                quote: false
+            
+      - name: order_revenue
+        description: "Total net revenue of the order after discounts"
+        tests:
+          - not_null
+          

@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: local_bike
+    database: databird-formation-493410
+    schema: local_bike_raw
+    tables:
+      - name: brands
+      - name: categories
+      - name: customers
+      - name: order_items
+      - name: orders
+      - name: products
+      - name: staffs
+      - name: stocks
+      - name: stores
